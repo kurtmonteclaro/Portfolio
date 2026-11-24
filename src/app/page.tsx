@@ -23,7 +23,7 @@ export default function HomePage() {
     <main id="main-content" tabIndex={-1}>
       <Hero />
 
-      <section aria-labelledby="projects-title" className="section section-projects" id="projects">
+      <section aria-labelledby="projects-title" className="section section-projects" id="projects" tabIndex={-1}>
         <div className="page-container">
           <SectionHeading id="projects-title">Featured Projects</SectionHeading>
           <div className="project-grid">
@@ -32,7 +32,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section aria-labelledby="about-title" className="section section-divider" id="about">
+      <section aria-labelledby="about-title" className="section section-divider" id="about" tabIndex={-1}>
         <div className="page-container about-layout">
           <div className="about-portrait">
             <Image
@@ -55,7 +55,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section aria-labelledby="skills-title" className="section section-skills" id="skills">
+      <section aria-labelledby="skills-title" className="section section-skills" id="skills" tabIndex={-1}>
         <div className="page-container">
           <SectionHeading id="skills-title">Technical Skills</SectionHeading>
           <div className="skills-grid">
@@ -73,7 +73,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section aria-labelledby="education-title" className="section" id="education">
+      <section aria-labelledby="education-title" className="section" id="education" tabIndex={-1}>
         <div className="page-container">
           <SectionHeading id="education-title">Education</SectionHeading>
           <div className="grid gap-4">
@@ -101,7 +101,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section aria-labelledby="contact-title" className="section section-contact" id="contact">
+      <section aria-labelledby="contact-title" className="section section-contact" id="contact" tabIndex={-1}>
         <div className="page-container">
           <div className="contact-panel">
             <div>

@@ -2,25 +2,26 @@ import { FolderCode, GitBranch, Mail, MapPin } from 'lucide-react';
 import Image from 'next/image';
 
 import { portfolio } from '@/data/portfolio';
+import { SectionLink } from './section-link';
 
 export function Hero() {
   return (
     <section aria-labelledby="hero-name" className="hero">
       <div className="page-container hero-inner">
         <div className="hero-copy">
-          <h1 className="hero-name" id="hero-name">
+          <h1 className="hero-name" id="hero-name" tabIndex={-1}>
             {portfolio.nameLines[0]} <span>{portfolio.nameLines[1]}</span>
           </h1>
           <p className="hero-role">{portfolio.headline}</p>
           <p className="hero-intro">{portfolio.introduction}</p>
 
           <div className="hero-actions">
-            <a className="button button-primary" href="#projects">
+            <SectionLink className="button button-primary" href="#projects">
               <FolderCode aria-hidden="true" size={17} /> View Projects
-            </a>
-            <a className="button button-quiet" href="#contact">
+            </SectionLink>
+            <SectionLink className="button button-quiet" href="#contact">
               <Mail aria-hidden="true" size={17} /> Contact Me
-            </a>
+            </SectionLink>
           </div>
 
           <div className="hero-meta">

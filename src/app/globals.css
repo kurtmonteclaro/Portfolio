@@ -67,6 +67,7 @@ main:focus { outline: none; }
 .site-nav { @apply flex items-center gap-8 text-sm font-medium; color: var(--muted); }
 .site-nav a { @apply inline-flex min-h-11 items-center; transition: color 180ms, background 180ms, border-color 180ms; }
 .site-nav a:hover { color: var(--foreground); }
+.site-nav a[aria-current='location'] { color: var(--accent-bright); }
 
 .site-nav .nav-contact {
   @apply rounded-lg px-4;
@@ -75,7 +76,7 @@ main:focus { outline: none; }
   background: #1b1528;
 }
 
-.site-nav .nav-contact:hover { background: #2c2140; border-color: #725695; }
+.site-nav .nav-contact:hover, .site-nav .nav-contact[aria-current='location'] { background: #2c2140; border-color: #725695; }
 .menu-toggle { display: none; }
 
 .hero {

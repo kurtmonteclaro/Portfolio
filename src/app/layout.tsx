@@ -5,6 +5,7 @@ import '@fontsource-variable/space-grotesk/wght.css';
 import { portfolio } from '@/data/portfolio';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
+import { SectionLink } from '@/components/section-link';
 import './globals.css';
 
 const title = `${portfolio.name} | Software Development Portfolio`;
@@ -26,7 +27,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en-PH">
       <body id="top">
-        <a className="skip-link" href="#main-content">Skip to content</a>
+        <SectionLink className="skip-link" href="#main-content">Skip to content</SectionLink>
         <SiteHeader />
         {children}
         <SiteFooter />
