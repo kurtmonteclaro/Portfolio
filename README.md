@@ -22,7 +22,7 @@ npm run build
 npm start
 ```
 
-`npm start` serves the production build locally.
+`npm run build` generates a static site in `out/`. `npm start` previews that folder using the `serve` CLI.
 
 ## Edit the portfolio
 
@@ -36,7 +36,7 @@ npm start
 
 1. Commit the project and push it to your GitHub repository.
 2. In Vercel, select **Add New → Project** and import the repository.
-3. Keep the **Next.js** framework preset and the repository root. Select Node.js 24.x or 22.x if you need to set a Node.js version. The app needs no environment variables.
-4. Select **Deploy**. Vercel provides the portfolio URL once the build succeeds.
+3. Keep the **Next.js** framework preset and the repository root. Leave the Build Command and Output Directory overrides off so Vercel detects the static export. Select Node.js 24.x or 22.x if you need to set a Node.js version. The app needs no environment variables.
+4. Select **Deploy**. Confirm the site's production domain loads in a signed-out browser. Under **Deployment Protection**, **Standard Protection** can protect previews while keeping the production domain public.
 
 [Vercel’s Next.js deployment guide](https://vercel.com/docs/frameworks/full-stack/nextjs)
