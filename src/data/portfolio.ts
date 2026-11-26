@@ -12,9 +12,9 @@ export type Project = {
 type EducationEntry = {
   institution: string;
   program: string;
+  details: string;
   graduation: { label: string; dateTime: string };
   highlights: string[];
-  logo?: string;
 };
 
 export const portfolio = {
@@ -23,16 +23,16 @@ export const portfolio = {
   shortName: 'Kurt Monteclaro',
   headline: 'Aspiring Software Developer | IT Student',
   location: 'Cebu City, Philippines',
-  email: 'kurtdavid.monteclaro@cit.edu',
+  email: 'kdmonteclaro@gmail.com',
   github: 'https://github.com/kurtmonteclaro',
   githubHandle: 'kurtmonteclaro',
   introduction:
     'I’m an IT student interested in full-stack development, building useful web applications, and exploring emerging technologies.',
   aboutPortrait: {
     src: '/images/about-portrait.webp',
-    alt: 'Kurt David M. Monteclaro wearing a black-and-white checkered shirt',
-    width: 679,
-    height: 711,
+    alt: 'Kurt David M. Monteclaro wearing a dark suit and tie',
+    width: 840,
+    height: 1050,
   },
   about: [
     'I’m pursuing a Bachelor of Science in Information Technology at Cebu Institute of Technology – University. Through coursework and team projects, I’ve explored how interfaces, APIs, and databases work together to solve practical problems.',
@@ -42,16 +42,16 @@ export const portfolio = {
     {
       institution: 'Cebu Institute of Technology – University',
       program: 'Bachelor of Science in Information Technology',
-      graduation: { label: 'Expected graduation June 2027', dateTime: '2027-06' },
-      highlights: ['Programming', 'Database management', 'Networking', 'Systems development'],
-      logo: '/images/education/cit-u-seal.png',
+      details: 'Programming, database management, networking, and systems development',
+      graduation: { label: 'Expected graduation in June', dateTime: '2027-06' },
+      highlights: ['GWA 4.6', '2nd Year – Top 4 Overall BSIT'],
     },
     {
       institution: 'University of Cebu – Main Campus',
-      program: 'Senior High School · Science, Technology, Engineering, and Mathematics (STEM)',
-      graduation: { label: 'Graduated in 2022', dateTime: '2022' },
+      program: 'Senior High School',
+      details: 'Science, Technology, Engineering, and Mathematics (STEM)',
+      graduation: { label: 'Graduated', dateTime: '2022' },
       highlights: ['High Honors'],
-      logo: '/images/education/uc-logo.png',
     },
   ] satisfies EducationEntry[],
   resume: {

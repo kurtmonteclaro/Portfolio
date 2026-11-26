@@ -56,7 +56,7 @@ main:focus { outline: none; }
 .header-inner { @apply flex items-center justify-between gap-6; min-height: var(--header-height); }
 .brand { @apply inline-flex items-center gap-3 whitespace-nowrap font-semibold; letter-spacing: -0.025em; }
 
-.brand-mark, .skill-icon, .education-icon, .contact-icon {
+.brand-mark, .skill-icon, .contact-icon {
   @apply grid shrink-0 place-items-center;
   color: var(--accent);
   background: #231b35;
@@ -168,10 +168,13 @@ main:focus { outline: none; }
   letter-spacing: -0.055em;
 }
 
-.project-grid { @apply grid gap-5; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.project-list { @apply grid gap-5; }
 
 .project-card {
-  @apply flex flex-col overflow-hidden rounded-2xl;
+  @apply grid items-center rounded-2xl;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3.5vw, 2.75rem);
+  padding: clamp(1rem, 2.5vw, 2rem);
   border: 1px solid var(--line);
   background: var(--surface);
   transition: transform 200ms, border-color 200ms;
@@ -183,27 +186,31 @@ main:focus { outline: none; }
 .project-creditor { --project-color: #90b7ff; --project-bg: #151f35; }
 .project-uddnrs { --project-color: #81d6ce; --project-bg: #112827; }
 
-.project-visual {
-  @apply relative overflow-hidden;
-  aspect-ratio: 16 / 9;
-  isolation: isolate;
-  color: var(--project-color);
-  border-bottom: 1px solid var(--line);
-  background: radial-gradient(ellipse at 50% 52%, var(--project-bg), #111119 95%);
-}
-
-.project-screenshot { object-fit: cover; }
-
-.project-icon {
-  @apply absolute right-3 bottom-3 grid size-10 place-items-center rounded-xl border;
-  border-color: color-mix(in srgb, var(--project-color) 42%, transparent);
+.project-preview {
+  @apply overflow-hidden rounded-xl border;
+  border-color: color-mix(in srgb, var(--project-color) 65%, var(--line));
   background: var(--project-bg);
-  box-shadow: 0 0 2.5rem color-mix(in srgb, var(--project-color) 17%, transparent);
 }
 
-.project-content { @apply flex flex-1 flex-col items-start gap-3 p-5; }
-.project-content h3 { @apply font-display text-2xl font-bold; letter-spacing: -0.04em; }
-.project-title { color: var(--project-color); margin-top: -0.35rem; font-size: 0.9rem; font-weight: 500; }
+.project-preview-bar { @apply flex h-7 items-center px-3; }
+.project-preview-bar::before {
+  @apply size-1.5 rounded-full;
+  content: '';
+  background: var(--project-color);
+  box-shadow: 0.75rem 0 var(--project-color), 1.5rem 0 var(--project-color);
+  opacity: 0.55;
+}
+
+.project-screenshot { display: block; width: 100%; height: auto; }
+
+.project-content { @apply flex min-w-0 flex-col items-start gap-3; }
+.project-content h3 {
+  @apply font-display leading-tight font-bold;
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  letter-spacing: -0.045em;
+}
+
+.project-title { color: var(--project-color); margin-top: -0.35rem; font-weight: 500; }
 .project-description { color: var(--muted); line-height: 1.66; margin-bottom: 0.15rem; }
 
 .tag {
@@ -213,9 +220,13 @@ main:focus { outline: none; }
   border-color: #302e3e;
 }
 
-.project-links { @apply flex w-full flex-wrap gap-x-4; margin-top: auto; padding-top: 0.55rem; }
-.project-links a { @apply inline-flex min-h-10 items-center gap-2 text-sm font-medium; color: #ded8ee; }
-.project-links a:hover { color: var(--project-color); }
+.project-links { @apply mt-2 flex flex-wrap gap-2.5; }
+.project-code-link { color: var(--project-color); border-color: color-mix(in srgb, var(--project-color) 65%, var(--line)); }
+.project-code-link:hover { background: var(--project-bg); border-color: var(--project-color); }
+
+.project-more { margin-top: 1.4rem; text-align: end; color: var(--muted); }
+.project-more a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 0.2em; }
+.project-more a:hover { color: var(--accent-bright); }
 
 .about-layout {
   @apply grid items-center;
@@ -224,11 +235,41 @@ main:focus { outline: none; }
 }
 
 .about-portrait {
-  @apply w-full;
+  @apply relative w-full border;
   max-width: 21rem;
+  padding: clamp(0.7rem, 1.5vw, 1rem);
+  border-radius: 1.35rem;
+  border-color: #493762;
+  background: linear-gradient(145deg, #261c37, var(--surface) 55%, #1c1628);
+  box-shadow: 0 1.25rem 3rem #0005;
 }
 
-.about-portrait img { display: block; width: 100%; height: auto; max-height: 24rem; object-fit: contain; }
+.about-portrait::before, .about-portrait::after {
+  position: absolute;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 0 solid var(--accent);
+  opacity: 0.85;
+  pointer-events: none;
+  content: '';
+}
+
+.about-portrait::before {
+  inset: 0.4rem auto auto 0.4rem;
+  border-width: 1px 0 0 1px;
+  border-top-left-radius: 0.95rem;
+}
+
+.about-portrait::after {
+  inset: auto 0.4rem 0.4rem auto;
+  border-width: 0 1px 1px 0;
+  border-bottom-right-radius: 0.95rem;
+}
+
+.about-portrait img {
+  @apply block h-auto w-full rounded-xl border;
+  border-color: #5d4a77;
+}
 .about-layout .section-heading { margin-bottom: 1.2rem; }
 .about-copy { @apply space-y-4; max-width: 43rem; color: var(--muted); font-size: 1.075rem; line-height: 1.75; }
 
@@ -239,13 +280,40 @@ main:focus { outline: none; }
 .skill-card h3 { @apply mb-4 flex items-center gap-3 font-display text-lg font-bold; }
 .skill-icon, .contact-icon { @apply size-10 rounded-lg; }
 
-.section-skills + .section { padding-top: 0; }
-.education-card { @apply flex flex-wrap items-start gap-5 rounded-2xl border p-6; border-color: var(--line); background: var(--surface); }
-.education-icon { @apply size-14 rounded-xl; }
-.education-copy { flex: 1 1 24rem; }
-.education-copy h3 { @apply font-display text-xl font-bold; letter-spacing: -0.028em; }
-.education-copy p { color: var(--muted); margin-block: 0.25rem 1rem; }
-.education-date { @apply inline-flex items-center gap-2 text-sm font-medium; color: var(--accent-bright); }
+.section-education { border-top: 1px solid var(--line); }
+.education-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.education-layout .section-heading { margin-bottom: 0; }
+.education-entry {
+  display: grid;
+  grid-template-columns: clamp(8rem, 12vw, 10rem) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.education-entry + .education-entry {
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.education-date { @apply grid gap-1.5 text-sm leading-snug; color: var(--muted); }
+.education-year {
+  @apply font-display font-bold;
+  color: var(--accent-bright);
+  font-size: clamp(2.5rem, 4.2vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.education-details h3 { @apply font-display text-2xl leading-tight font-bold; letter-spacing: -0.028em; }
+.education-institution { @apply mt-1 font-semibold; }
+.education-description { color: var(--muted); margin-block: 0.25rem 0.9rem; }
+.education-details .tag { @apply rounded-full text-sm; }
 
 .section-contact { padding-top: 0; }
 
@@ -277,7 +345,7 @@ main:focus { outline: none; }
   .page-container { width: calc(100% - 3.5rem); }
   .hero-inner { gap: 2rem; }
   .site-nav { gap: 1.15rem; }
-  .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .education-layout { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 47.99rem) {
@@ -293,20 +361,19 @@ main:focus { outline: none; }
   .hero-name { font-size: clamp(2.6rem, 12.5vw, 5.3rem); margin-bottom: 1.125rem; }
   .hero-visual { width: min(100%, 30rem); }
   .hero-meta { margin-top: 1rem; }
+  .project-card { grid-template-columns: minmax(0, 1fr); }
   .about-layout, .contact-panel { grid-template-columns: minmax(0, 1fr); }
   .about-portrait { justify-self: center; }
   .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .skill-card, .skill-card:nth-child(-n+2) { grid-column: auto; }
   .skill-card:first-child { grid-column: span 2; }
-  .education-card { gap: 1rem; }
-  .education-copy { flex-basis: 15rem; }
 }
 
 @media (max-width: 35rem) {
-  .project-grid { grid-template-columns: minmax(0, 1fr); }
   .hero-actions { gap: 0.4rem; }
   .button { padding-inline: 0.7rem; }
   .skill-card { padding: 1rem; }
+  .education-entry { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {

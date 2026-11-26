@@ -1,4 +1,4 @@
-import { CalendarDays, CodeXml, Database, Download, GraduationCap, Layers3, Server, Wrench } from 'lucide-react';
+import { CodeXml, Database, Download, Layers3, Server, Wrench } from 'lucide-react';
 import Image from 'next/image';
 
 import { Hero } from '@/components/hero';
@@ -26,9 +26,10 @@ export default function HomePage() {
       <section aria-labelledby="projects-title" className="section section-projects" id="projects" tabIndex={-1}>
         <div className="page-container">
           <SectionHeading id="projects-title">Featured Projects</SectionHeading>
-          <div className="project-grid">
+          <div className="project-list">
             {projects.map((project) => <ProjectCard key={project.id} project={project} />)}
           </div>
+          <p className="project-more">Browse my other projects on <a href={github}>GitHub</a>.</p>
         </div>
       </section>
 
@@ -73,28 +74,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section aria-labelledby="education-title" className="section" id="education" tabIndex={-1}>
-        <div className="page-container">
+      <section aria-labelledby="education-title" className="section section-education" id="education" tabIndex={-1}>
+        <div className="page-container education-layout">
           <SectionHeading id="education-title">Education</SectionHeading>
-          <div className="grid gap-4">
-            {education.map(({ institution, program, graduation, highlights, logo }) => (
-              <article className="education-card" key={institution}>
-                <span className="education-icon">
-                  {logo ? (
-                    <Image alt="" height={42} src={logo} width={42} />
-                  ) : (
-                    <GraduationCap aria-hidden="true" size={28} />
-                  )}
-                </span>
-                <div className="education-copy">
-                  <h3>{institution}</h3>
-                  <p>{program}</p>
+          <div>
+            {education.map(({ institution, program, details, graduation, highlights }) => (
+              <article className="education-entry" key={institution}>
+                <p className="education-date">
+                  <time className="education-year" dateTime={graduation.dateTime}>{graduation.dateTime.slice(0, 4)}</time>
+                  <span>{graduation.label}</span>
+                </p>
+                <div className="education-details">
+                  <h3>{program}</h3>
+                  <p className="education-institution">{institution}</p>
+                  <p className="education-description">{details}</p>
                   <TagList items={highlights} />
                 </div>
-                <p className="education-date">
-                  <CalendarDays aria-hidden="true" size={17} />
-                  <time dateTime={graduation.dateTime}>{graduation.label}</time>
-                </p>
               </article>
             ))}
           </div>
